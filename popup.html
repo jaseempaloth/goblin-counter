@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Goblin Counter</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="brand-header">
+        <img src="icons/icon48.png" alt="" class="brand-logo">
+        <p class="eyebrow">Goblin Counter</p>
+      </header>
+      <h1>Goblins & Gremlins Found</h1>
+
+      <div class="stats-grid" aria-live="polite">
+        <div class="stats-section">
+          <h2>This Page</h2>
+          <div class="stat-row">
+            <span class="stat-label">Goblins</span>
+            <span id="pageGoblinsCount" class="stat-value">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Gremlins</span>
+            <span id="pageGremlinsCount" class="stat-value">0</span>
+          </div>
+        </div>
+        <div class="stats-section">
+          <h2>Lifetime Total</h2>
+          <div class="stat-row">
+            <span class="stat-label">Goblins</span>
+            <span id="lifetimeGoblinsCount" class="stat-value">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Gremlins</span>
+            <span id="lifetimeGremlinsCount" class="stat-value">0</span>
+          </div>
+        </div>
+      </div>
+
+      <label class="toggle-row" for="highlightToggle">
+        <span>
+          <strong>Highlight matches</strong>
+          <small>Marks goblins & gremlins in assistant messages.</small>
+        </span>
+        <input id="highlightToggle" type="checkbox" role="switch" checked>
+      </label>
+
+      <p id="status" class="status">Open a ChatGPT conversation to start counting.</p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
