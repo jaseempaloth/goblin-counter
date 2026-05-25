@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Goblin Counter",
+  "version": "1.0.0",
+  "description": "Counts every goblin and gremlin in ChatGPT assistant messages and shows a live badge count.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["https://chatgpt.com/*"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Goblin Counter",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
