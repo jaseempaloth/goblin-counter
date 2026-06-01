@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Goblin Counter Details</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="details-page">
+    <main class="details-shell">
+      <header class="details-header">
+        <div class="brand-header">
+          <div class="brand-lockup">
+            <img src="icons/icon48.png" alt="" class="brand-logo">
+            <p class="eyebrow">Goblin Counter</p>
+          </div>
+          <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+            <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true"></span>
+            <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <h1>Creature Mentions</h1>
+      </header>
+
+      <section class="summary-grid" aria-live="polite">
+        <div class="summary-card">
+          <span>This Page</span>
+          <strong id="pageTotalCount">0</strong>
+        </div>
+        <div class="summary-card">
+          <span>Lifetime Total</span>
+          <strong id="lifetimeTotalCount">0</strong>
+        </div>
+      </section>
+
+      <section class="details-panel">
+        <div class="panel-heading">
+          <h2>Tracked Terms</h2>
+          <label class="compact-toggle" for="detailsHighlightToggle">
+            <span>Highlight</span>
+            <input id="detailsHighlightToggle" type="checkbox" role="switch" checked>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table class="details-table">
+            <thead>
+              <tr>
+                <th scope="col">Term</th>
+                <th scope="col">Matches</th>
+                <th scope="col">This Page</th>
+                <th scope="col">Lifetime</th>
+                <th scope="col">Enabled</th>
+              </tr>
+            </thead>
+            <tbody id="termRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="theme.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

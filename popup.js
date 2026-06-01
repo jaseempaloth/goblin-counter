@@ -6,6 +6,7 @@ const pageGremlinsElement = document.getElementById("pageGremlinsCount");
 const lifetimeGoblinsElement = document.getElementById("lifetimeGoblinsCount");
 const lifetimeGremlinsElement = document.getElementById("lifetimeGremlinsCount");
 const highlightToggle = document.getElementById("highlightToggle");
+const viewDetailsButton = document.getElementById("viewDetailsButton");
 const statusElement = document.getElementById("status");
 
 function updateCounts(counts) {
@@ -46,14 +47,27 @@ async function askContentScriptToScan() {
   }
 
   try {
-    await chrome.tabs.sendMessage(activeTab.id, {
-      type: "REQUEST_GOBLING_SCAN"
-    });
-
+    await requestScan(activeTab.id);
     showStatus("Live on this ChatGPT page.");
   } catch (_error) {
-    showStatus("Refresh the ChatGPT tab if the counter has not started yet.");
+    try {
+      showStatus("Starting counter on this ChatGPT page...");
+      await chrome.scripting.executeScript({
+        target: { tabId: activeTab.id },
+        files: ["content.js"]
+      });
+      await requestScan(activeTab.id);
+      showStatus("Live on this ChatGPT page.");
+    } catch (_injectError) {
+      showStatus("Refresh the ChatGPT tab if the counter has not started yet.");
+    }
   }
+}
+
+async function requestScan(tabId) {
+  await chrome.tabs.sendMessage(tabId, {
+    type: "REQUEST_GOBLING_SCAN"
+  });
 }
 
 async function setHighlightEnabled(enabled) {
@@ -112,6 +126,10 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 
 highlightToggle.addEventListener("change", () => {
   setHighlightEnabled(highlightToggle.checked);
+});
+
+viewDetailsButton.addEventListener("click", () => {
+  chrome.runtime.openOptionsPage();
 });
 
 askContentScriptToScan();
